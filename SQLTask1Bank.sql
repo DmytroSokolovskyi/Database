@@ -29,7 +29,7 @@ WHERE LastName LIKE '%ov'
 # 6. +Вивести клієнтів банку, які обслуговуються київськими відділеннями.
 SELECT *
 FROM client
-         JOIN department on client.Department_idDepartment = idDepartment
+         JOIN department d on client.Department_idDepartment = d.idDepartment
 WHERE DepartmentCity = 'Kyiv';
 #
 # 7. +Вивести імена клієнтів та їхні номера телефону, погрупувавши їх за іменами.
@@ -49,7 +49,7 @@ WHERE application.Sum > 5000;
 # 9. +Порахувати кількість клієнтів усіх відділень та лише львівських відділень.
 SELECT COUNT(idClient) AS lvivDepartment
 FROM client
-         JOIN department ON client.Department_idDepartment = idDepartment
+         JOIN department d ON client.Department_idDepartment = d.idDepartment
 WHERE DepartmentCity = 'Lviv';
 #
 # 10. Знайти кредити, які мають найбільшу суму для кожного клієнта окремо.
@@ -147,7 +147,7 @@ SELECT CONCAT(idClient, ' ',
               LastName) AS client,
        Sum
 FROM client
-         JOIN application ON client.idClient = Client_idClient
+         JOIN application a ON client.idClient = a.Client_idClient
 WHERE Sum > 5000
   AND CreditState = 'Returned';
 #
